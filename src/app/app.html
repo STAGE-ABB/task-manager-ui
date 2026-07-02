@@ -1,40 +1,92 @@
 <div class="container">
 
-  <h1>Task Manager</h1>
+  <!-- Header -->
+  <div class="header">
 
-  <p style="color:red; font-size:30px;">
-    TEST Hajar - {{ tasks.length }}
-  </p>
+    <h1>
+      <i class="bi bi-list-task"></i>
+      Task Manager
+    </h1>
 
+    <p>Organisez vos taches efficacement</p>
+
+  </div>
+
+  <!-- Add Task -->
   <div class="add-task">
 
-    <input
-      type="text"
-      [(ngModel)]="newTaskTitle"
-      placeholder="Entrer le titre de la tâche">
+    <div class="input-box">
+
+      <i class="bi bi-pencil-square"></i>
+
+      <input
+        type="text"
+        [(ngModel)]="newTaskTitle"
+        placeholder="Entrer le titre de la tâche">
+
+    </div>
 
     @if (!editing) {
-    <button (click)="addTask()">
+
+    <button class="add-btn" (click)="addTask()">
+
+      <i class="bi bi-plus-lg"></i>
+
       Ajouter
+
     </button>
+
     }
 
     @if (editing) {
-    <button (click)="updateTask()">
+
+    <button class="update-btn" (click)="updateTask()">
+
+      <i class="bi bi-floppy"></i>
+
       Mettre à jour
+
     </button>
+
     }
 
   </div>
 
+  <!-- Statistics -->
+  <div class="stats">
+
+    <div class="card">
+
+      <i class="bi bi-list-check"></i>
+
+      <div>
+
+        <span>Total des taches</span>
+
+        <h2>{{ tasks.length }}</h2>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Table -->
+
   <table>
 
     <thead>
+
     <tr>
+
       <th>ID</th>
+
       <th>Titre</th>
+
       <th>Actions</th>
+
     </tr>
+
     </thead>
 
     <tbody>
@@ -43,18 +95,44 @@
 
     <tr>
 
-      <td>{{ task.id }}</td>
 
-      <td>{{ task.title }}</td>
 
       <td>
-        <button (click)="editTask(task)">
+    <span class="badge">
+        {{ $index + 1 }}
+    </span>
+      </td>
+
+
+
+      <td>
+
+        {{ task.title }}
+
+      </td>
+
+      <td class="actions">
+
+        <button
+          class="edit-btn"
+          (click)="editTask(task)">
+
+          <i class="bi bi-pencil"></i>
+
           Modifier
+
         </button>
 
-        <button (click)="deleteTask(task.id!)">
+        <button
+          class="delete-btn"
+          (click)="deleteTask(task.id!)">
+
+          <i class="bi bi-trash"></i>
+
           Supprimer
+
         </button>
+
       </td>
 
     </tr>
