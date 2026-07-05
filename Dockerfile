@@ -1,4 +1,13 @@
-FROM ubuntu:latest
-LABEL authors="dell"
+FROM node:22
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 4200
+
+CMD ["npm", "start"]
